@@ -1,0 +1,445 @@
+
+<!DOCTYPE html>
+<html lang="en" class="has-aside-left has-aside-mobile-transition has-navbar-fixed-top has-aside-expanded">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Account - PM-WANI-BGC</title>
+    <link rel="shortcut icon" href="ui/ui/images/logo.png" type="image/x-icon" />
+
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+
+    <link rel="stylesheet" href="styles/ionicons.min.css">
+    <link rel="stylesheet" href="styles/font-awesome.min.css">
+    <link rel="stylesheet" href="styles/modern-AdminLTE.min.css">
+    <link rel="stylesheet" href="styles/sweetalert2.min.css" />
+    <script src="styles/sweetalert2.all.min.js"></script>
+
+
+    <style>
+        .mulish-font {
+            font-family: 'Mulish', sans-serif;
+        }
+        .font-bold {
+            font-weight: bold;
+        }
+        ::-moz-selection {
+            /* Code for Firefox */
+            color: red;
+            background: yellow;
+        }
+
+        ::selection {
+            color: red;
+            background: yellow;
+        }
+
+        .select2-container .select2-selection--single .select2-selection__rendered {
+            margin-top: 0px !important;
+        }
+
+        @media (min-width: 768px) {
+            .outer {
+                height: 200px
+                    /* Or whatever */
+            }
+        }
+
+        th:first-child,
+        td:first-child {
+            position: sticky;
+            left: 0px;
+            background-color: #f9f9f9;
+        }
+
+
+        .text1line {
+            display: block;
+            /* or inline-block */
+            text-overflow: ellipsis;
+            word-wrap: break-word;
+            overflow: hidden;
+            max-height: 1em;
+            line-height: 1em;
+        }
+
+
+        .loading {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .loading::after {
+            content: "";
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            vertical-align: middle;
+            margin-left: 10px;
+            border: 2px solid #fff;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s infinite linear;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+       /*
+         * maintenance top-bar 
+         */
+
+         .notification-top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 40px;
+            line-height: 40px;
+            width: 100%;
+            background: #ec2106;
+            text-align: center;
+            color: #FFFFFF;
+            font-family: serif;
+            font-weight: bolder;
+            font-size: 14px;
+            z-index: 9999;
+            box-sizing: border-box;
+            padding: 0 10px;
+        }
+
+        .notification-top-bar p {
+            padding: 0;
+            margin: 0;
+        }
+
+        .notification-top-bar p a {
+            padding: 5px 10px;
+            border-radius: 3px;
+            background: #FFF;
+            color: #1ABC9C;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline;
+            font-size: inherit;
+        }
+
+        @media (max-width: 600px) {
+            .notification-top-bar {
+                font-size: 12px;
+                height: auto;
+                line-height: normal;
+                padding: 10px;
+            }
+
+            .notification-top-bar p a {
+                padding: 5px 10px;
+                margin: 5px 0;
+                font-size: 10px;
+                display: inline-block;
+            }
+        }
+.sidebar-menu > li.active > a {
+    color: #f29f67 !important;
+    background-color: #1e1e2c;
+    border-radius: 1em;
+    width: 95%;
+    display: block;
+    margin: 0 auto;
+}
+
+    /* Style for online status indicator */
+    .user-image-container {
+        position: relative;
+    }
+    .online-status {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 0.75rem;
+        height: 0.75rem;
+        background-color: #4caf50; /* green */
+        border: 2px solid white;
+        border-radius: 50%;
+    }
+
+/* Fix sidebar toggle button visibility and position */
+.sidebar-toggle {
+    color: #000 !important; /* Make it black */
+    background: transparent !important;
+    border: none;
+    font-size: 20px;
+    margin-left: 10px; /* Push it a bit right for alignment */
+    z-index: 1001; /* Ensure it's above navbar but not over text */
+    position: relative; /* So z-index works */
+}
+
+/* Optional: Adjust layout so heading doesn't get overlapped */
+.content-header h1 {
+    padding-left: 40px; /* Make room for the toggle icon */
+    position: relative;
+    z-index: 1;
+}
+
+</style>
+
+<body class="hold-transition modern-skin-light bg-white  text-gray-800 sidebar-mini">
+    <div class="wrapper">
+        <header class="main-header" style="position:fixed; width: 100%">
+            <a href="dashboard.html" class="logo">
+                <span class="logo-mini"><b>PM-WANI-BGC</b></span>
+                <span class="logo-lg">PM-WANI-BGC</span>
+            </a>
+            <nav class="navbar navbar-static-top">
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                                    <span>DAYANIDHI DAS</span>
+                                                                <img src="https://robohash.org/1409?set=set3&size=100x100&bgset=bg1"
+                                    onerror="this.src='system/uploads/user.default.jpg'" class="user-image"
+                                    alt="User Image">
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="user-header">
+                                    <img src="https://robohash.org/1409?set=set3&size=100x100&bgset=bg1"
+                                        onerror="this.src='system/uploads/user.default.jpg'" class="img-circle"
+                                        alt="User Image">
+
+                                    <p>
+                                        DAYANIDHI DAS
+                                        <small>9583379123<br>
+                                            <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="22434c4b505746464a434616141a435162454f434b4e0c414d4f">[email&#160;protected]</a></small>
+                                    </p>
+                                </li>
+                                        <div class="col-xs-5 text-center text-sm">
+                                            <a href="My Account.html"><i class="ion ion-person"></i>
+                                                My Account</a>
+                                        </div>
+                                <li class="user-footer">
+                                    <div class="pull-right">
+                                        <a href="index.html" class="btn btn-default btn-flat"><i
+                                                class="ion ion-power"></i> Logout</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <aside class="main-sidebar" style="position:fixed;">
+            <section class="sidebar">
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li >
+                        <a href="dashboard.html">
+                            <i class="ion ion-monitor"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    
+                                            <li >
+                            <a href="voucher.html">
+                                <i class="fa fa-ticket"></i>
+                                <span>Voucher</span>
+                            </a>
+                        </li>
+                                                                                        <li >
+                            <a href="buy package.html">
+                                <i class="ion ion-ios-cart"></i>
+                                <span>Buy Package</span>
+                            </a>
+                        </li>
+                        <li >
+                            <a href="Recharge history.html">
+                                <i class="fa fa-file-text"></i>
+                                <span>Order History</span>
+                            </a>
+                        </li>
+                                        
+                    <li >
+                        <a href="Recharge Activated.html">
+                            <i class="fa fa-list-alt"></i>
+                            <span>Activation History</span>
+                        </a>
+                    </li>
+                </li>
+                    <li><a href="Data Usages.html"><i class="fa fa-download"></i><span class="text">UserDataUsage</span></a></li>
+                </ul>
+            </section>
+        </aside>
+
+        <div class="content-wrapper">
+            <section class="content-header">
+                <h1>
+                    My Account
+                </h1>
+            </section>
+            <section class="content">
+
+
+                <!-- user-profile -->
+
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <div class="panel panel-primary panel-hovered panel-stacked mb30">
+            <div class="panel-heading">Edit User</div>
+            <div class="panel-body">
+
+                <form class="form-horizontal" method="post" role="form" action="https://pmwani.axpectinfotech.com/index.php?_route=accounts/edit-profile-post">
+                    <input type="hidden" name="id" value="1409">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Username</label>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">+</span>
+                                <input type="text" class="form-control" name="username" id="username" readonly
+                                    value="9583379123"
+                                    placeholder="Enter 10 Digit Mobile Number / Phone Number">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Full Name</label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" id="fullname" name="fullname"
+                                value="DAYANIDHI DAS">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Address</label>
+                        <div class="col-md-6">
+                            <textarea name="address" id="address" class="form-control">SOLPATA SOLPATA BALESHWAR ODISHA 756027</textarea>
+                        </div>
+                    </div>
+                                            <div class="form-group">
+                            <label class="col-md-2 control-label">Phone Number</label>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">+</span>
+                                    <input type="text" class="form-control" name="phonenumber" id="phonenumber"
+                                        value="9583379123"
+                                        placeholder="Enter 10 Digit Mobile Number / Phone Number">
+                                </div>
+                            </div>
+                        </div>
+                                        <div class="form-group">
+                        <label class="col-md-2 control-label">Email</label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" id="email" name="email" value="aniruddhad468as@gmail.com">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <button class="btn btn-success" type="submit">
+                            Save Changes</button>
+                            Or <a href="https://pmwani.axpectinfotech.com/index.php?_route=home">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+        </section>
+        </div>
+                    <footer class="main-footer">
+                AXPECT INFOTECH NETWORK PVT. LTD.
+                <br>
+        C/O SAURABH SINGHKOLGHAT SADAR, AZAMGARH Sadar UP 276001 IN                
+                    <div class="pull-right">
+                    <a href="javascript:showPrivacy()">Privacy</a>
+                    &bull;
+                    <a href="javascript:showTaC()">T &amp; C</a>
+                    &bull;
+                    <a href="javascript:showRefundPolicy()">Refund Policy</a>
+                    &bull;
+                    <a href="javascript:showAboutUs()">About Us</a>
+                </div>
+            </footer>
+                </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="HTMLModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body" id="HTMLModal_konten"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">&times;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="ui/ui/scripts/jquery.min.js"></script>
+        <script src="ui/ui/scripts/bootstrap.min.js"></script>
+        <script src="ui/ui/scripts/adminlte.min.js"></script>
+
+        <script src="ui/ui/scripts/plugins/select2.min.js"></script>
+        <script src="ui/ui/scripts/custom.js?v=2"></script>
+
+        
+        
+        
+            <script>
+                var listAtts = document.querySelectorAll(`[api-get-text]`);
+                listAtts.forEach(function(el) {
+                    $.get(el.getAttribute('api-get-text'), function(data) {
+                        el.innerHTML = data;
+                    });
+                });
+                $(document).ready(function() {
+                    var listAtts = document.querySelectorAll(`button[type="submit"]`);
+                    listAtts.forEach(function(el) {
+                        if (el.addEventListener) { // all browsers except IE before version 9
+                            el.addEventListener("click", function() {
+                                $(this).html(
+                                    `<span class="loading"></span>`
+                                );
+                                setTimeout(() => {
+                                    $(this).prop("disabled", true);
+                                }, 100);
+                            }, false);
+                        } else {
+                            if (el.attachEvent) { // IE before version 9
+                                el.attachEvent("click", function() {
+                                    $(this).html(
+                                        `<span class="loading"></span>`
+                                    );
+                                    setTimeout(() => {
+                                        $(this).prop("disabled", true);
+                                    }, 100);
+                                });
+                            }
+                        }
+
+                    });
+                });
+            </script>
+        
+
+        </body>
+
+</html>
