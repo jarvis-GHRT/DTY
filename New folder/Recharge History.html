@@ -1,0 +1,542 @@
+
+<!DOCTYPE html>
+<html lang="en" class="has-aside-left has-aside-mobile-transition has-navbar-fixed-top has-aside-expanded">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Order History - Axpect Infotech</title>
+    <link rel="shortcut icon" href="ui/ui/images/logo.png" type="image/x-icon" />
+
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+
+    <link rel="stylesheet" href="styles/ionicons.min.css">
+    <link rel="stylesheet" href="styles/font-awesome.min.css">
+    <link rel="stylesheet" href="styles/modern-AdminLTE.min.css">
+    <link rel="stylesheet" href="styles/sweetalert2.min.css" />
+    <script src="styles/sweetalert2.all.min.js"></script>
+
+
+    <style>
+        .mulish-font {
+            font-family: 'Mulish', sans-serif;
+        }
+        .font-bold {
+            font-weight: bold;
+        }
+        ::-moz-selection {
+            /* Code for Firefox */
+            color: red;
+            background: yellow;
+        }
+
+        ::selection {
+            color: red;
+            background: yellow;
+        }
+
+        .select2-container .select2-selection--single .select2-selection__rendered {
+            margin-top: 0px !important;
+        }
+
+        @media (min-width: 768px) {
+            .outer {
+                height: 200px
+                    /* Or whatever */
+            }
+        }
+
+        th:first-child,
+        td:first-child {
+            position: sticky;
+            left: 0px;
+            background-color: #f9f9f9;
+        }
+
+
+        .text1line {
+            display: block;
+            /* or inline-block */
+            text-overflow: ellipsis;
+            word-wrap: break-word;
+            overflow: hidden;
+            max-height: 1em;
+            line-height: 1em;
+        }
+
+
+        .loading {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .loading::after {
+            content: "";
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            vertical-align: middle;
+            margin-left: 10px;
+            border: 2px solid #fff;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s infinite linear;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+       /*
+         * maintenance top-bar 
+         */
+
+         .notification-top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 40px;
+            line-height: 40px;
+            width: 100%;
+            background: #ec2106;
+            text-align: center;
+            color: #FFFFFF;
+            font-family: serif;
+            font-weight: bolder;
+            font-size: 14px;
+            z-index: 9999;
+            box-sizing: border-box;
+            padding: 0 10px;
+        }
+
+        .notification-top-bar p {
+            padding: 0;
+            margin: 0;
+        }
+
+        .notification-top-bar p a {
+            padding: 5px 10px;
+            border-radius: 3px;
+            background: #FFF;
+            color: #1ABC9C;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline;
+            font-size: inherit;
+        }
+
+        @media (max-width: 600px) {
+            .notification-top-bar {
+                font-size: 12px;
+                height: auto;
+                line-height: normal;
+                padding: 10px;
+            }
+
+            .notification-top-bar p a {
+                padding: 5px 10px;
+                margin: 5px 0;
+                font-size: 10px;
+                display: inline-block;
+            }
+        }
+.sidebar-menu > li.active > a {
+    color: #f29f67 !important;
+    background-color: #1e1e2c;
+    border-radius: 1em;
+    width: 95%;
+    display: block;
+    margin: 0 auto;
+}
+
+    /* Style for online status indicator */
+    .user-image-container {
+        position: relative;
+    }
+    .online-status {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 0.75rem;
+        height: 0.75rem;
+        background-color: #4caf50; /* green */
+        border: 2px solid white;
+        border-radius: 50%;
+    }
+
+/* Fix sidebar toggle button visibility and position */
+.sidebar-toggle {
+    color: #000 !important; /* Make it black */
+    background: transparent !important;
+    border: none;
+    font-size: 20px;
+    margin-left: 10px; /* Push it a bit right for alignment */
+    z-index: 1001; /* Ensure it's above navbar but not over text */
+    position: relative; /* So z-index works */
+}
+
+/* Optional: Adjust layout so heading doesn't get overlapped */
+.content-header h1 {
+    padding-left: 40px; /* Make room for the toggle icon */
+    position: relative;
+    z-index: 1;
+}
+
+</style>
+
+<body class="hold-transition modern-skin-light bg-white  text-gray-800 sidebar-mini">
+    <div class="wrapper">
+        <header class="main-header" style="position:fixed; width: 100%">
+            <a href="Dashboard.html" class="logo">
+                <span class="logo-mini"><b>PM-WAMI</b>BGC</span>
+                <span class="logo-lg">PM-WANI-BGC</span>
+            </a>
+            <nav class="navbar navbar-static-top">
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                                    <span>DAYANIDHI DAS</span>
+                                                                <img src="https://robohash.org/1409?set=set3&size=100x100&bgset=bg1"
+                                    onerror="this.src='system/uploads/user.default.jpg'" class="user-image"
+                                    alt="User Image">
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="user-header">
+                                    <img src="https://robohash.org/1409?set=set3&size=100x100&bgset=bg1"
+                                        onerror="this.src='system/uploads/user.default.jpg'" class="img-circle"
+                                        alt="User Image">
+
+                                    <p>
+                                        DAYANIDHI DAS
+                                        <small>9583379123<br>
+                                            <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8dece3e4fff8e9e9e5ece9b9bbb5ecfecdeae0ece4e1a3eee2c0">[email&#160;protected]</a></small>
+                                    </p>
+                                </li>
+                                <li class="user-body">
+                                    <div class="row">
+                                        <div class="col-xs-7 text-center text-sm">
+                                        </div>
+                                        <div class="col-xs-5 text-center text-sm">
+                                            <a href="My Account.html"><i class="ion ion-person"></i>
+                                                My Account</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="user-footer">
+                                    <div class="pull-right">
+                                        <a href="index.html" class="btn btn-default btn-flat"><i
+                                                class="ion ion-power"></i> Logout</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <aside class="main-sidebar" style="position:fixed;">
+            <section class="sidebar">
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li >
+                        <a href="Dashboard.html">
+                            <i class="ion ion-monitor"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    
+                                            <li >
+                            <a href="Voucher.html">
+                                <i class="fa fa-ticket"></i>
+                                <span>Voucher</span>
+                            </a>
+                        </li>
+                                                                                        <li >
+                            <a href="Buy Package.html">
+                                <i class="ion ion-ios-cart"></i>
+                                <span>Buy Package</span>
+                            </a>
+                        </li>
+                        <li class="active" >
+                            <a href="Recharge History.html">
+                                <i class="fa fa-file-text"></i>
+                                <span>Order History</span>
+                            </a>
+                        </li>
+                                        
+                    <li >
+                        <a href="Recharge Activated.html">
+                            <i class="fa fa-list-alt"></i>
+                            <span>Activation History</span>
+                        </a>
+                    </li>
+                    </li>
+                    <li><a href="Data Usages.html"><i class="fa fa-download"></i><span class="text">UserDataUsage</span></a></li>
+                </ul>
+            </section>
+        </aside>
+
+        <div class="content-wrapper">
+            <section class="content-header">
+                <h1>
+                    Order History
+                </h1>
+            </section>
+            <section class="content">
+
+
+                <!-- user-orderHistory -->
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel mb20 panel-hovered panel-primary">
+            <div class="panel-heading">Order History</div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table id="datatable" class="table table-bordered table-striped table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Plan Name</th>
+                                <th>Gateway</th>
+                                <th>Routers</th>
+                                <th>Type</th>
+                                <th>Plan Price</th>
+                                <th>Created On</th>
+                                <th>Expires On</th>
+                                <th>Date Done</th>
+                                <th>Method</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                                            <tr>
+                                    <td><a href="https://pmwani.axpectinfotech.com/index.php?_route=order/view/4295">200MB*Trial-Plan</a></td>
+                                    <td>razorpay</td>
+                                    <td>radius</td>
+                                    <td></td>
+                                    <td>Rs. 1</td>
+                                    <td class="text-primary">20 Jul 2025 16:19</td>
+                                    <td class="text-danger">20 Jul 2025 17:19</td>
+                                    <td class="text-success">20 Jul 2025 16:21</td>
+                                    <td>CANCELED
+                                        </td>
+                                </tr>
+                                                            <tr>
+                                    <td><a href="https://pmwani.axpectinfotech.com/index.php?_route=order/view/4221">200MB*Trial-Plan</a></td>
+                                    <td>razorpay</td>
+                                    <td>radius</td>
+                                    <td>Razorpay</td>
+                                    <td>Rs. 1</td>
+                                    <td class="text-primary">12 Jul 2025 16:00</td>
+                                    <td class="text-danger">12 Jul 2025 17:00</td>
+                                    <td class="text-success">12 Jul 2025 16:00</td>
+                                    <td>PAID
+                                        </td>
+                                </tr>
+                                                            <tr>
+                                    <td><a href="https://pmwani.axpectinfotech.com/index.php?_route=order/view/4220">200MB*Trial-Plan</a></td>
+                                    <td>razorpay</td>
+                                    <td>radius</td>
+                                    <td></td>
+                                    <td>Rs. 1</td>
+                                    <td class="text-primary">12 Jul 2025 15:56</td>
+                                    <td class="text-danger">12 Jul 2025 16:56</td>
+                                    <td class="text-success">12 Jul 2025 16:00</td>
+                                    <td>CANCELED
+                                        </td>
+                                </tr>
+                                                            <tr>
+                                    <td><a href="https://pmwani.axpectinfotech.com/index.php?_route=order/view/4219">1GB</a></td>
+                                    <td>razorpay</td>
+                                    <td>radius</td>
+                                    <td></td>
+                                    <td>Rs. 5</td>
+                                    <td class="text-primary">12 Jul 2025 15:52</td>
+                                    <td class="text-danger">12 Jul 2025 16:52</td>
+                                    <td class="text-success">01 Jan 1970 05:30</td>
+                                    <td>
+                                        </td>
+                                </tr>
+                                                            <tr>
+                                    <td><a href="https://pmwani.axpectinfotech.com/index.php?_route=order/view/4011">1GB</a></td>
+                                    <td>razorpay</td>
+                                    <td>radius</td>
+                                    <td></td>
+                                    <td>Rs. 5</td>
+                                    <td class="text-primary">09 Jun 2025 10:37</td>
+                                    <td class="text-danger">01 Jan 1970 05:30</td>
+                                    <td class="text-success">09 Jun 2025 10:37</td>
+                                    <td>CANCELED
+                                        </td>
+                                </tr>
+                                                            <tr>
+                                    <td><a href="https://pmwani.axpectinfotech.com/index.php?_route=order/view/3984">21GB</a></td>
+                                    <td>razorpay</td>
+                                    <td>radius</td>
+                                    <td></td>
+                                    <td>Rs. 32</td>
+                                    <td class="text-primary">09 Jun 2025 10:35</td>
+                                    <td class="text-danger">01 Jan 1970 05:30</td>
+                                    <td class="text-success">09 Jun 2025 10:35</td>
+                                    <td>CANCELED
+                                        </td>
+                                </tr>
+                                                            <tr>
+                                    <td><a href="https://pmwani.axpectinfotech.com/index.php?_route=order/view/3750">200MB*Trial-Plan</a></td>
+                                    <td>razorpay</td>
+                                    <td>radius</td>
+                                    <td></td>
+                                    <td>Rs. 1</td>
+                                    <td class="text-primary">12 May 2025 16:05</td>
+                                    <td class="text-danger">12 May 2025 17:05</td>
+                                    <td class="text-success">12 May 2025 16:07</td>
+                                    <td>CANCELED
+                                        </td>
+                                </tr>
+                                                            <tr>
+                                    <td><a href="https://pmwani.axpectinfotech.com/index.php?_route=order/view/2429">1GB</a></td>
+                                    <td>razorpay</td>
+                                    <td>radius</td>
+                                    <td>Razorpay</td>
+                                    <td>Rs. 5</td>
+                                    <td class="text-primary">31 Jan 2025 15:09</td>
+                                    <td class="text-danger">31 Jan 2025 16:09</td>
+                                    <td class="text-success">31 Jan 2025 15:14</td>
+                                    <td>PAID
+                                        </td>
+                                </tr>
+                                                            <tr>
+                                    <td><a href="https://pmwani.axpectinfotech.com/index.php?_route=order/view/2428">1GB</a></td>
+                                    <td>razorpay</td>
+                                    <td>radius</td>
+                                    <td></td>
+                                    <td>Rs. 5</td>
+                                    <td class="text-primary">31 Jan 2025 15:07</td>
+                                    <td class="text-danger">31 Jan 2025 16:07</td>
+                                    <td class="text-success">31 Jan 2025 15:09</td>
+                                    <td>CANCELED
+                                        </td>
+                                </tr>
+                                                    </tbody>
+                    </table>
+                </div>
+                    <center>
+    <nav aria-label="Page navigation pagination-sm">
+        <ul class="pagination">
+            <li class="disabled" >
+                <a href="https://pmwani.axpectinfotech.com/index.php?_route=order/history&p=0" aria-label="Previous">
+                    <span aria-hidden="true">Prev</span>
+                </a>
+            </li>
+                            <li class="active"><a
+                        href="https://pmwani.axpectinfotech.com/index.php?_route=order/history&p=1">1</a></li>
+                        <li class="disabled" >
+                <a href="https://pmwani.axpectinfotech.com/index.php?_route=order/history&p=1" aria-label="Next">
+                    <span aria-hidden="true">Next</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    </center>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        </section>
+        </div>
+                    <footer class="main-footer">
+                AXPECT INFOTECH NETWORK PVT. LTD.
+                <br>
+        C/O SAURABH SINGHKOLGHAT SADAR, AZAMGARH Sadar UP 276001 IN                
+                    <div class="pull-right">
+                    <a href="javascript:showPrivacy()">Privacy</a>
+                    &bull;
+                    <a href="javascript:showTaC()">T &amp; C</a>
+                    &bull;
+                    <a href="javascript:showRefundPolicy()">Refund Policy</a>
+                    &bull;
+                    <a href="javascript:showAboutUs()">About Us</a>
+                </div>
+            </footer>
+                </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="HTMLModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body" id="HTMLModal_konten"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">&times;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="scripts/jquery.min.js"></script>
+        <script src="scripts/bootstrap.min.js"></script>
+        <script src="scripts/adminlte.min.js"></script>
+
+        <script src="scripts/select2.min.js"></script>
+        <script src="scripts/custom.js?v=2"></script>
+
+        
+        
+        
+            <script>
+                var listAtts = document.querySelectorAll(`[api-get-text]`);
+                listAtts.forEach(function(el) {
+                    $.get(el.getAttribute('api-get-text'), function(data) {
+                        el.innerHTML = data;
+                    });
+                });
+                $(document).ready(function() {
+                    var listAtts = document.querySelectorAll(`button[type="submit"]`);
+                    listAtts.forEach(function(el) {
+                        if (el.addEventListener) { // all browsers except IE before version 9
+                            el.addEventListener("click", function() {
+                                $(this).html(
+                                    `<span class="loading"></span>`
+                                );
+                                setTimeout(() => {
+                                    $(this).prop("disabled", true);
+                                }, 100);
+                            }, false);
+                        } else {
+                            if (el.attachEvent) { // IE before version 9
+                                el.attachEvent("click", function() {
+                                    $(this).html(
+                                        `<span class="loading"></span>`
+                                    );
+                                    setTimeout(() => {
+                                        $(this).prop("disabled", true);
+                                    }, 100);
+                                });
+                            }
+                        }
+
+                    });
+                });
+            </script>
+        
+
+        </body>
+
+</html>

@@ -1,0 +1,647 @@
+
+<!DOCTYPE html>
+<html lang="en" class="has-aside-left has-aside-mobile-transition has-navbar-fixed-top has-aside-expanded">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard - Axpect Infotech</title>
+    <link rel="shortcut icon" href="ui/ui/images/logo.png" type="image/x-icon" />
+
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+
+    <link rel="stylesheet" href="styles/ionicons.min.css">
+    <link rel="stylesheet" href="styles/font-awesome.min.css">
+    <link rel="stylesheet" href="styles/modern-AdminLTE.min.css">
+    <link rel="stylesheet" href="styles/sweetalert2.min.css" />
+    <script src="styles/sweetalert2.all.min.js"></script>
+
+
+    <style>
+        .mulish-font {
+            font-family: 'Mulish', sans-serif;
+        }
+        .font-bold {
+            font-weight: bold;
+        }
+        ::-moz-selection {
+            /* Code for Firefox */
+            color: red;
+            background: yellow;
+        }
+
+        ::selection {
+            color: red;
+            background: yellow;
+        }
+
+        .select2-container .select2-selection--single .select2-selection__rendered {
+            margin-top: 0px !important;
+        }
+
+        @media (min-width: 768px) {
+            .outer {
+                height: 200px
+                    /* Or whatever */
+            }
+        }
+
+        th:first-child,
+        td:first-child {
+            position: sticky;
+            left: 0px;
+            background-color: #f9f9f9;
+        }
+
+
+        .text1line {
+            display: block;
+            /* or inline-block */
+            text-overflow: ellipsis;
+            word-wrap: break-word;
+            overflow: hidden;
+            max-height: 1em;
+            line-height: 1em;
+        }
+
+
+        .loading {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .loading::after {
+            content: "";
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            vertical-align: middle;
+            margin-left: 10px;
+            border: 2px solid #fff;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s infinite linear;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+       /*
+         * maintenance top-bar 
+         */
+
+         .notification-top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 40px;
+            line-height: 40px;
+            width: 100%;
+            background: #ec2106;
+            text-align: center;
+            color: #FFFFFF;
+            font-family: serif;
+            font-weight: bolder;
+            font-size: 14px;
+            z-index: 9999;
+            box-sizing: border-box;
+            padding: 0 10px;
+        }
+
+        .notification-top-bar p {
+            padding: 0;
+            margin: 0;
+        }
+
+        .notification-top-bar p a {
+            padding: 5px 10px;
+            border-radius: 3px;
+            background: #FFF;
+            color: #1ABC9C;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline;
+            font-size: inherit;
+        }
+
+        @media (max-width: 600px) {
+            .notification-top-bar {
+                font-size: 12px;
+                height: auto;
+                line-height: normal;
+                padding: 10px;
+            }
+
+            .notification-top-bar p a {
+                padding: 5px 10px;
+                margin: 5px 0;
+                font-size: 10px;
+                display: inline-block;
+            }
+        }
+.sidebar-menu > li.active > a {
+    color: #f29f67 !important;
+    background-color: #1e1e2c;
+    border-radius: 1em;
+    width: 95%;
+    display: block;
+    margin: 0 auto;
+}
+
+    /* Style for online status indicator */
+    .user-image-container {
+        position: relative;
+    }
+    .online-status {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 0.75rem;
+        height: 0.75rem;
+        background-color: #4caf50; /* green */
+        border: 2px solid white;
+        border-radius: 50%;
+    }
+
+/* Fix sidebar toggle button visibility and position */
+.sidebar-toggle {
+    color: #000 !important; /* Make it black */
+    background: transparent !important;
+    border: none;
+    font-size: 20px;
+    margin-left: 10px; /* Push it a bit right for alignment */
+    z-index: 1001; /* Ensure it's above navbar but not over text */
+    position: relative; /* So z-index works */
+}
+
+/* Optional: Adjust layout so heading doesn't get overlapped */
+.content-header h1 {
+    padding-left: 40px; /* Make room for the toggle icon */
+    position: relative;
+    z-index: 1;
+}
+
+        /* Enhanced User Dropdown Styles */
+        .dropdown-user {
+            width: 280px;
+            padding: 10px 0;
+            background: #fff;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .user-header {
+            text-align: center;
+            padding: 15px 10px;
+            background: #3c8dbc;
+            color: #fff;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .user-header img {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 10px;
+            border: 3px solid rgba(255,255,255,0.3);
+        }
+
+        .user-info {
+            margin: 10px 0;
+            color: #fff;
+        }
+
+        .user-info strong {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .user-contact {
+            display: block;
+            font-size: 12px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .user-contact i {
+            margin-right: 5px;
+            width: 16px;
+            text-align: center;
+        }
+
+        .user-contact a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .user-footer {
+            padding: 15px 10px;
+            background: #f9f9f9;
+            border-top: 1px solid #eee;
+        }
+
+        .dropdown-footer {
+            padding: 10px;
+            text-align: center;
+            background: #f5f5f5;
+            border-top: 1px solid #eee;
+            border-radius: 0 0 4px 4px;
+        }
+
+        .dropdown-footer .logo-img {
+            max-height: 30px;
+            margin-bottom: 5px;
+        }
+
+        .company-name {
+            font-size: 12px;
+            color: #777;
+            font-weight: bold;
+        }
+
+        .btn-flat {
+            border-radius: 3px;
+            padding: 6px 12px;
+        }
+
+        .user-image {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        .caret {
+            margin-left: 5px;
+        }
+
+        @media (max-width: 767px) {
+            .dropdown-user {
+                width: 100%;
+                position: absolute;
+                right: 0;
+                left: auto;
+            }
+            
+            .user-header {
+                padding: 10px;
+            }
+            
+            .user-header img {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+    </style>
+
+<body class="hold-transition modern-skin-light bg-white  text-gray-800 sidebar-mini">
+    <div class="wrapper">
+        <header class="main-header" style="position:fixed; width: 100%">
+            <a href="dashboard.html" class="logo">
+                <span class="logo-mini"><b>PM-WANI-BGC</b></span>
+                <span class="logo-lg">PM-WANI-BGC</span>
+            </a>
+            <nav class="navbar navbar-static-top">
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="hidden-xs">DAYANIDHI DAS</span>
+                                <img src="https://robohash.org/1409?set=set3&size=100x100&bgset=bg1"
+                                    onerror="this.src='system/uploads/user.default.jpg'" class="user-image"
+                                    alt="User Image">
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li class="user-header">
+                                    <img src="https://robohash.org/1409?set=set3&size=100x100&bgset=bg1"
+                                        onerror="this.src='system/uploads/user.default.jpg'" class="img-circle"
+                                        alt="User Image">
+                                    <p class="user-info">
+                                        <strong>DAYANIDHI DAS</strong>
+                                        <small class="user-contact">
+                                            <i class="fa fa-phone"></i> 9583379123<br>
+                                            <i class="fa fa-envelope"></i> 
+                                            <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="690807001b1c0d0d01080d5d5f51081a290e04080005470a0604">[email&#160;protected]</a>
+                                        </small>
+                                    </p>
+                                </li>
+                                <li class="user-footer">
+                                    <div class="row">
+                                        <div class="col-xs-6 text-center">
+                                            <a href="My Account.html" class="btn btn-default btn-flat">
+                                                <i class="ion ion-person"></i> My Account
+                                            </a>
+                                        </div>
+                                        <div class="col-xs-6 text-center">
+                                            <a href="index.html" class="btn btn-default btn-flat">
+                                                <i class="ion ion-power"></i> Logout
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="dropdown-footer">
+                                    <div class="text-center">
+                                        <img src="ui/ui/images/logo.png" alt="PM-WANI-BGC" class="logo-img">
+                                        <div class="company-name">PM-WANI-BGC</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <aside class="main-sidebar" style="position:fixed;">
+            <section class="sidebar">
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li class="active" >
+                        <a href="dashboard.html">
+                            <i class="ion ion-monitor"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    
+                                            <li >
+                            <a href="voucher.html">
+                                <i class="fa fa-ticket"></i>
+                                <span>Voucher</span>
+                            </a>
+                        </li>
+                                                                                        <li >
+                            <a href="buy package.html">
+                                <i class="ion ion-ios-cart"></i>
+                                <span>Buy Package</span>
+                            </a>
+                        </li>
+                        <li >
+                            <a href="Recharge history.html">
+                                <i class="fa fa-file-text"></i>
+                                <span>Order History</span>
+                            </a>
+                        </li>
+                                        
+                    <li >
+                        <a href="Recharge Activated.html">
+                            <i class="fa fa-list-alt"></i>
+                            <span>Activation History</span>
+                        </a>
+                    </li>
+                    <li></li>
+                    </li>
+                    <li><a href="Data Usages.html"><i class="fa fa-download"></i><span class="text">UserDataUsage</span></a></li>
+                </ul>
+            </section>
+        </aside>
+
+        <div class="content-wrapper">
+            <section class="content-header">
+                <h1>
+                    Dashboard
+                </h1>
+            </section>
+            <section class="content">
+
+
+                <!-- user-dashboard -->
+
+<div class="row">
+    <div class="col col-md-6 col-md-push-6">
+                <div class="box box-info box-solid">
+            <div class="box-header">
+                <h3 class="box-title">Announcement</h3>
+            </div>
+            <div class="box-body">
+                                                    <font face="georgia" size="3"><b>Note:</b></font>
+<hr>
+<b>
+  <ol>
+    <font size="2">
+      <li>
+        <b><font face="georgia">Important: Use Mozilla Firefox for Recharge</font></b>
+        <font face="georgia">
+          <p>If you're facing problems during Recharge, please follow these steps:</p>
+          <ol>
+            <li>Open Mozilla Firefox browser</li>
+            <li>Copy this link: https://pmwani.axpectinfotech.com</li>
+            <li>Paste the link into Firefox's address bar and press Enter</li>
+          </ol>
+          <p>This will take you to the customer portal. Using Firefox is essential for the recharge process to work correctly.</p>
+        </font>
+      </li>
+    </font>
+  </ol>
+</b>                            </div>
+        </div>
+    </div>
+    <div class="col col-md-6 col-md-pull-6">
+        <div class="box box-primary box-solid">
+            <div class="box-header">
+                <h3 class="box-title">Your Account Information</h3>
+            </div>
+            <table class="table table-bordered table-striped table-bordered table-hover mb-0"
+                style="margin-bottom: 0px;">
+                <tr>
+                    <td class="small text-success text-uppercase text-normal">Username</td>
+                    <td class="small mb15">9583379123</td>
+                </tr>
+                <tr>
+                    <td class="small text-success text-uppercase text-normal">Service Type</td>
+                    <td class="small mb15">
+                                                    Hotspot
+                                            </td>
+                </tr>
+
+                            </table>
+                    </div>
+                    <div class="box box-primary box-solid">
+                                                            <div class="box-header">
+                            <h3 class="box-title">Radius Plan</h3>
+                        </div>
+                                        <table class="table table-bordered table-striped table-bordered table-hover" style="margin-bottom: 0px;">
+                        <tr>
+                            <td class="small text-primary text-uppercase text-normal">Plan Name</td>
+                            <td class="small mb15">
+                                100GB
+                                                            </td>
+                        </tr>
+                        <tr>
+                            <td class="small text-primary text-uppercase text-normal">Bandwidth</td>
+                            <td class="small mb15">
+                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="small text-info text-uppercase text-normal">Created On</td>
+                            <td class="small mb15">
+                                17 Jul 2025 14:49
+                                &nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="small text-danger text-uppercase text-normal">Expires On</td>
+                            <td class="small mb15 text-danger">
+                                16 Aug 2025 14:49&nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="small text-success text-uppercase text-normal">Type</td>
+                            <td class="small mb15 text-success">
+                                <b>Prepaid</b>
+                                Personal
+                            </td>
+                        </tr>
+                                                                                                                        <tr>
+                             <td class="small row">
+                                                                <a class="btn btn-primary pull-left btn-sm"
+                                    href="Recharge.html"
+                                    onclick="return confirm('Recharge?')">Recharge</a>
+                             </td>
+                        </tr>
+                    </table>
+                            </div>
+                                                                        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+                        setTimeout(() => {
+                            $.ajax({
+                                url: "index.php?_route=autoload_user/isLogin/837",
+                                cache: false,
+                                success: function(msg) {
+                                    $("#login_status_837").html(msg);
+                                }
+                            });
+                        }, 2000);
+                    </script>
+                                                    <br>
+                    <div class="box box-primary box-solid mb30">
+                <div class="box-header">
+                    <h3 class="box-title">Voucher Activation</h3>
+                </div>
+                <div class="box-body">
+                    <form method="post" role="form" class="form-horizontal" action="Voucher.html">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <a class="btn btn-default"
+                                    href="Voucher.html"><i
+                                        class="glyphicon glyphicon-qrcode"></i></a>
+                            </span>
+                            <input type="text" id="code" name="code" class="form-control"
+                                placeholder="Enter voucher code here" value="">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="submit">Recharge</button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+                <div class="box-body">
+                    <div class="btn-group btn-group-justified" role="group">
+                        <a class="btn btn-default" href="Voucher.html">
+                            <i class="ion ion-ios-cart"></i>
+                            Order Voucher
+                        </a>
+                                                    <a href="buy package.html" class="btn btn-default">
+                                <i class="ion ion-ios-cart"></i>
+                                Order Package
+                            </a>
+                                            </div>
+                </div>
+            </div>
+            </div>
+</div>
+        </section>
+        </div>
+                    <footer class="main-footer">
+                PM-WANI-BGC
+                <br>
+        C/O ANIRUDDHA DAS, SOLPATA BALASORE 756027 IN           
+                    <div class="pull-right">
+                    <a href="javascript:showPrivacy()">Privacy</a>
+                    &bull;
+                    <a href="javascript:showTaC()">T &amp; C</a>
+                    &bull;
+                    <a href="javascript:showRefundPolicy()">Refund Policy</a>
+                    &bull;
+                    <a href="javascript:showAboutUs()">About Us</a>
+                </div>
+            </footer>
+                </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="HTMLModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body" id="HTMLModal_konten"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">&times;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <script src="scripts/jquery.min.js"></script>
+        <script src="scripts/bootstrap.min.js"></script>
+        <script src="scripts/adminlte.min.js"></script>
+
+        <script src="scripts/plugins/select2.min.js"></script>
+        <script src="scripts/custom.js"></script>
+
+        
+        
+        
+            <script>
+                var listAtts = document.querySelectorAll(`[api-get-text]`);
+                listAtts.forEach(function(el) {
+                    $.get(el.getAttribute('api-get-text'), function(data) {
+                        el.innerHTML = data;
+                    });
+                });
+                $(document).ready(function() {
+                    var listAtts = document.querySelectorAll(`button[type="submit"]`);
+                    listAtts.forEach(function(el) {
+                        if (el.addEventListener) { // all browsers except IE before version 9
+                            el.addEventListener("click", function() {
+                                $(this).html(
+                                    `<span class="loading"></span>`
+                                );
+                                setTimeout(() => {
+                                    $(this).prop("disabled", true);
+                                }, 100);
+                            }, false);
+                        } else {
+                            if (el.attachEvent) { // IE before version 9
+                                el.attachEvent("click", function() {
+                                    $(this).html(
+                                        `<span class="loading"></span>`
+                                    );
+                                    setTimeout(() => {
+                                        $(this).prop("disabled", true);
+                                    }, 100);
+                                });
+                            }
+                        }
+
+                    });
+                });
+            </script>
+        
+
+        </body>
+
+</html>
